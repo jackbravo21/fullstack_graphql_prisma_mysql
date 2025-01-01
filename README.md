@@ -14,6 +14,7 @@ CRUD avançado com suporte a dados.
 Criptografia JWT/tokens.
 
 
+
 Frontend (React):
 
 Padrões de projeto: Separação clara entre regras de negócios e componentes.
@@ -27,6 +28,7 @@ Redux: Utilização de Reducers, Saga, Store e Slice para o gerenciamento de est
 Tokens: Implementação de autenticação e manutenção de sessão com tokens JWT.
 
 Apollo Client (GraphQL Frontend): Configuração dos schemas, cacheController e execução de consultas GraphQL.
+
 
 
 Backend (Node.js):
@@ -44,8 +46,13 @@ Prisma: ORM para interação com o banco de dados MySQL.
 MySQL: Banco de dados relacional utilizado.
 
 
+
 Tecnologias Utilizadas:
+
 Frontend: React, Apollo Client, Redux, react-router-dom.
+
 Backend: Node.js, Apollo Server, Prisma, MySQL.
+
 Autenticação: JWT (JSON Web Tokens).
+
 ORM: Prisma.
