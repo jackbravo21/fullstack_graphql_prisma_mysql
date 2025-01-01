@@ -1,0 +1,10 @@
+const { gql } = require('apollo-server');
+
+const deletionResponseTypeDefs = gql`
+  type DeletionResponse {
+    success: Boolean
+    id: Int
+  }
+`;
+
+module.exports = deletionResponseTypeDefs;

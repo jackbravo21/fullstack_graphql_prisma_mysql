@@ -1,0 +1,29 @@
+.buttonEdit1 {
+    background-color: #46b0d3;
+    border: 2px solid rgba(0, 0, 0, 0.226);
+    color: rgb(255, 255, 255);
+    padding: 8px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 8px 12px 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .buttonEdit2 {
+    background-color: rgb(255, 255, 255); 
+    color: rgb(0, 0, 0); 
+    border: 2px solid #008CBA;
+  }
+  
+  .buttonEdit1:hover {
+    background-color: #008CBA;
+  }
+
+  .iconEditButton{
+    color: white;
+    font-size: 15px;
+  }

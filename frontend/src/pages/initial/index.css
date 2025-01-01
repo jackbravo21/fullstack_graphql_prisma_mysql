@@ -1,0 +1,22 @@
+
+h1{
+    color: aliceblue;
+}
+
+li, p{
+    color: white;
+}
+
+.container {
+    max-width: 700px;
+    margin: 1px auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+.img{
+    align-items: center;
+    alt: 500;
+    height: 700;
+}
+  

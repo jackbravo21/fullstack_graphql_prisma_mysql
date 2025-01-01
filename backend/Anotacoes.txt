@@ -1,0 +1,100 @@
+
+npm init -y
+npm install nodemon --save-dev
+npm install apollo-server graphql
+npm install mysql2
+
+versao4:
+npm install graphql-tag
+
+npm i -s graphql-import
+
+nodemon
+ou
+node index.js
+
+npm install @prisma/client
+npx prisma init
+
+npx prisma db pull              //baixar tabelas do banco;
+npx prisma migrate dev --name init  //escreve no banco de dados;
+
+npx prisma studio               //abre o prima no navegador;
+
+npx prisma generate            //caso precise gerar o cliente prisma;
+npm install @prisma/client    //verifica se foi instalado o cliente do prisma
+
+npm install dotenv            //dotenv do jwt;
+
+npm install @graphql-tools/merge    //merge dos types;
+npm install joi               //validacao dos forms
+npm install jsonwebtoken      //installa o jwt token
+npm install bcryptjs          //bcryptjs
+npm install bcrypt            //bcrypt
+
+npm install graphql-upload    //para enviar arquivos;
+npm install graphql-upload@latest
+npm install graphql-upload@10.0.0
+npm install apollo-server graphql graphql-upload  //installa tudo;
+
+//ferramentas de merge;
+npm install @graphql-tools/merge @graphql-tools/load graphql-tag 
+
+- Baixar as tabelas do banco de dados automaticamente, como um provider:
+Certifique-se de que a conexão está configurada corretamente no arquivo .env com a variável DATABASE_URL.
+
+Config no .env:
+DATABASE_URL="mysql://root:@localhost:3306/Nome_do_banco"
+
+Execute o comando para introspecção para sincronizar o prisma com o DB, vai baixar as tabelas do banco:
+npx prisma db pull
+
+
+Como fazer o modelo:
+===============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model couses {
+  id          Int    @id @default(autoincrement())
+  title       String @db.VarChar(255)
+  description String @db.VarChar(255)
+  image       String @db.VarChar(255)
+  teacher     Int
+}
+
+model inscribed {
+  id         Int @id @default(autoincrement())
+  id_student Int
+  id_course  Int
+}
+
+model log_error {
+  id          Int    @id @default(autoincrement())
+  status_code String @db.VarChar(255)
+  message     String @db.VarChar(255)
+  endpoint    String @db.VarChar(255)
+  method      Int
+  created_at  Int
+}
+
+model users {
+  id         Int    @id @default(autoincrement())
+  fullname   String @db.VarChar(255)
+  mail       String @db.VarChar(255)
+  password   String @db.VarChar(255)
+  level      String @db.VarChar(255)
+  created_at String @db.VarChar(255)
+}
+
+=================================================================
+
+Estrutura do recebimento de parametros nas Querys e Mutations:
+resolverFunction(parent, args, context, info);

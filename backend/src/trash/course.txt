@@ -1,0 +1,44 @@
+const { gql } = require('apollo-server');
+
+const courseTypeDefs = gql`
+  type Course {
+    id: Int!
+    title: String
+    description: String
+    image: String
+    teacher: Int
+    createdAt: String
+  }
+
+#Se quiser enviar sem o crouses{} a mais na query e tirar o statusCode do fetchCourses, remover este;
+  type responseCourse{
+    courses: [Course!]!
+    statusCode: Int!
+  }
+
+  extend type Query {
+    #usar este abaixo se for remover o statusCode do response do fetchCourses no service;
+    #courses: [Course]
+    courses: responseCourse
+    course(id: Int!): Course
+  }
+
+  extend type Mutation {
+    createCourse(
+      title: String!
+      description: String!
+      image: String
+      teacher: Int!
+    ): Course
+    editCourse(
+      id: Int!
+      title: String
+      description: String
+      image: String
+      teacher: Int
+    ): Course
+    deleteCourse(id: Int!): DeletionResponse
+  }
+`;
+
+module.exports = courseTypeDefs;

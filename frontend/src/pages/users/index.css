@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .commumtitle{
+    text-align: center;
+  }
+  
+  .containerUsers {
+    max-width: 900px;
+    margin: 1px auto;
+    margin-bottom: 65px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;                /* Adiciona o Flexbox */
+    flex-direction: column;       /* Organiza os itens em coluna */
+    align-items: center;
+    padding-bottom: 50px;         /* padding de espacamento abaixo */
+  }
+
+  .iconEdit{
+    color: rgb(0, 110, 255);
+    cursor: pointer;
+  }
+
+  .iconEdit :hover{
+    color: rgb(0, 49, 114);
+    cursor: pointer;
+  }
+  
+  .iconDelete{
+    color: rgb(255, 60, 0);
+    cursor: pointer;
+  }
+  
+  .iconDelete :hover{
+    color: rgb(161, 38, 0);
+    cursor: pointer;
+  }
+
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  input[type=mail], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  input[type=password], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  .container {
+    border-radius: 5px;
+    /* background-color: #f2f2f2; */
+    padding: 20px;
+  }
+  
+  .col25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+  }
+  
+  .col75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+  
+  /* Clear floats after the columns */
+  .row::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col25, .col75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  
+  .option_disable{
+    color: rgb(155, 155, 155);
+  }
+  
+  .description{
+     height: 200px;
+  }
+  
+  p.central{
+    float: center;
+    color: black;
+  }
+  
+  .forgotpasswd{
+    color: blue;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    float: center;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px 90px 0px 0px;
+  }
+  
+  .forgotpasswd:hover{
+    color: rgb(0, 0, 150);
+    float: center;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  p.forgotpasswd{
+    float: right;
+  }
+  
+  /* centralizar botao */
+  .containerCentral { 
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto; 
+  }
+
+
+  table.ex1 {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th.ex1 {
+    border: 1px solid #f0f0f0;
+    background-color: #229fe7;
+    color: white;
+    text-align: center;
+    padding: 8px;
+  }
+
+  td.ex1 {
+    border: 1px solid #f0f0f0;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr.ex1:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  table.ex8, th.ex8, td.ex8 {
+    border: 1px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+  }
+
+  th.ex8 {
+    padding: 0px 10px 0px 10px;
+    background-color: #77b39d;
+  }
+
+  td.ex8 {
+    padding: 0px 10px 0px 10px;
+    background-color: #e1e4eb;
+  }
+  

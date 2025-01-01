@@ -1,0 +1,47 @@
+use school_courses;
+
+-- CreateTable
+CREATE TABLE `couses` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(255) NOT NULL,
+    `description` VARCHAR(255) NOT NULL,
+    `image` VARCHAR(255) NOT NULL,
+    `teacher` INTEGER NOT NULL,
+    `created_at` VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `inscribed` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id_student` INTEGER NOT NULL,
+    `id_course` INTEGER NOT NULL,
+    `created_at` VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `log_error` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `status_code` VARCHAR(255) NOT NULL,
+    `message` VARCHAR(255) NOT NULL,
+    `endpoint` VARCHAR(255) NOT NULL,
+    `method` INTEGER NOT NULL,
+    `created_at` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `users` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `fullname` VARCHAR(255) NOT NULL,
+    `mail` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `level` VARCHAR(255) NOT NULL,
+    `created_at` VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

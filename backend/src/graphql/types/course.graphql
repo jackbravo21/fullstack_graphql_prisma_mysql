@@ -1,0 +1,37 @@
+const { gql } = require('apollo-server');
+
+const courseTypeDefs = gql`
+
+  type Course {
+    id: Int!
+    title: String
+    description: String
+    teacher: Int
+    createdAt: String
+  }
+
+  extend type Query {
+    courses: [Course]
+    course(id: Int!): Course
+  }
+
+  extend type Mutation {
+    createCourse(
+      title: String!
+      description: String!
+      teacher: Int
+      createdAt: Int
+    ): Course
+
+    editCourse(
+      id: Int!
+      title: String
+      description: String
+      teacher: Int
+    ): Course
+
+    deleteCourse(id: Int!): DeletionResponse
+  }
+`;
+
+module.exports = courseTypeDefs;

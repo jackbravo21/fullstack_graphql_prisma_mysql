@@ -1,0 +1,52 @@
+.containerSection {
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.commumtitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.courseGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* 2 colunas se o espaço permitir */
+    gap: 20px;
+}
+
+.courseItem {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 6px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttonGroup {
+    /* display: flex; */
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.central {
+    margin: 8px 0;
+}
+
+
+.containerToButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que os elementos fiquem bem distribuídos */
+    height: 100%; /* Garante que o container tenha altura total */
+    padding: 10px; /* Ajuste conforme necessário */
+    border: 1px solid #ccc; /* Opcional, para visualização */
+}
+
+/* alinha todos os botoes para o final do container principal, joga todos la embaixo */
+.buttonContainer {
+    justify-content: space-between;
+    margin-top: auto; /* Move os botões para o final do container */
+    display: flex;
+    /* gap: 10px; /* Espaçamento entre os botões */
+}

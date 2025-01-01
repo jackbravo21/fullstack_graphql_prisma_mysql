@@ -1,0 +1,378 @@
+const { ApolloServer, gql } = require('apollo-server');
+const { PrismaClient } = require('@prisma/client'); //Importa o cliente do Prisma
+const jwt = require('jsonwebtoken');
+
+const { userLogin, userCheckInDB, userCreate, userEdit, userDelete, getOneUsers, fetchUsers } = require('./src/services/userService');
+const { courseCreate, courseEdit, courseDelete, getOneCourse, fetchCourses } = require('./src/services/courseService');
+const { inscriptionCreate, inscriptionDelete, getInscription, getInscriptionByUser, getInscriptionByCourse, fetchInscriptions } = require('./src/services/inscriptionService');
+
+
+const prisma = new PrismaClient();                  //Instancia o cliente do Prisma
+const port = 9000;                                  //Porta do servidor;
+
+const typeDefs = gql`
+
+# Definição do tipo User
+    type User{
+        id: Int!
+        fullname: String!
+        mail: String!
+        password: String!
+        level: String!
+        created_at: String
+    }
+
+    type Auth{
+        user: User
+        token: String
+    }
+
+# Definição do tipo Course
+    type Course{
+        id: Int!
+        title: String
+        description: String
+        image: String
+        teacher: Int
+        created_at: String
+    }
+
+# Definição do tipo Inscription
+    type Inscription{
+        id: Int
+        studentID: Int
+        courseID: Int
+        createdAt: String
+    }
+
+# Definição do tipo DeletionResponse
+    type DeletionResponse{
+        success: Boolean
+        id: Int
+    }
+
+# Consultas (Queries)
+    type Query{
+
+        users: [User]
+        user(id: Int!): User
+        checkUserMail(mail: String!): Int!, 
+        
+        courses: [Course]
+        course(id: Int!): Course
+
+        #Inscriptions
+        inscription(id: Int!): Inscription
+        inscriptions: [Inscription]       
+        inscriptionByUser(id: Int!): [Inscription]
+        inscriptionByCourse(id: Int!): [Inscription]
+        deleteInscription(id: Int!): Inscription   
+    }
+
+# Mutations para criar, editar e deletar usuários    
+    type Mutation{
+
+# Mutation do User;
+      createUser(
+            fullname: String!
+            mail: String!
+            password: String!
+            level: String!
+        ): User,
+        editUser(
+            id: Int!
+            fullname: String
+            mail: String
+            password: String
+            level: String
+        ): User,
+        # deleteUser(id: Int!): User,
+        deleteUser(id: Int!): DeletionResponse,
+        login(mail: String!, password: String!): Auth!,   
+
+# Mutation do Course;
+        createCourse(
+            title: String!
+            description: String!
+            image: String
+            teacher: Int!
+        ): Course,
+        editCourse(
+            id: Int!
+            title: String
+            description: String
+            image: String
+            teacher: Int
+        ): Course,
+        # deleteCourse(id: Int!): Int
+        deleteCourse(id: Int!): DeletionResponse
+
+# Mutation do Inscription;
+        createInscription(
+            id: Int
+            studentID: Int
+            courseID: Int
+            created_at: String
+        ): Inscription,
+        # deleteInscription(id: Int!): Int
+        deleteInscription(id: Int!): DeletionResponse
+
+
+  # User Mutations
+  #login(mail: String!, password: String!): Auth
+  #createUser(fullname: String!, mail: String!, password: String!, level: String!): User
+  #editUser(id: Int!, fullname: String!, mail: String!, password: String!, level: String!): User
+  #deleteUser(id: Int!): DeletionResponse
+
+  # Course Mutations
+  #createCourse(title: String!, description: String, image: String, teacher: Int!): Course
+  #editCourse(id: Int!, title: String, description: String, image: String, teacher: Int): Course
+  #deleteCourse(id: Int!): DeletionResponse
+
+  # Inscription Mutations
+  #createInscription(idStudent: Int!, idCourse: Int!): Inscription
+  #deleteInscription(id: Int!): DeletionResponse
+
+
+    }
+`;
+
+//Combinar resolvers
+const resolvers = {
+    Query: {
+
+      //Query Users;
+      users: async() => {
+        try {
+            return await fetchUsers();
+        }
+        catch(error){
+            console.error(`Error to get users:`, error);
+            throw new Error("Failed to fetch user!");
+        }
+      },
+      user: async(_, { id }) => {            
+          try {
+              return await getOneUsers(id);
+          }
+          catch(error){
+              console.error(`Error to get user by id: ${id}, error:`, error);
+              throw new Error("Failed to fetch user!");
+          }
+      },
+      checkUserMail: async(_, { mail }) => {            
+        try {
+            return await userCheckInDB(mail);
+        }
+        catch(error){
+            console.error(`Error to get user by mail: ${mail}, error:`, error);
+            throw new Error("Failed to fetch user!");
+        }
+      },
+
+      //Query Courses;
+      courses: async() => {
+        try {
+          return await fetchCourses();
+        }
+        catch(error){
+          console.error("Error fetching courses:", error);
+          throw new Error("Failed to fetch courses");
+        }
+      },
+      /*  
+      courses: async (_, { page = 1, pageSize = 10 }) => {
+      return await fetchCourses(page, pageSize);
+      },
+      */
+      course: async(_, { id }) => {
+          try {
+            return await getOneCourse(id);
+          }
+          catch(error){
+            console.error(`Error fetching course with id ${id}:`, error);
+            throw new Error("Failed to fetch course");
+          }
+      },
+
+      //Query Inscription;
+      inscription: async(_, { id }) => {
+          try {
+              return await getInscription(id);
+          }
+          catch(error){
+              console.error(`Error to get inscription with id ${id}:`, error);
+              throw new Error("Failed to fetch inscription!");
+          }
+      },
+      inscriptions: async() => {           
+          try {
+              return await fetchInscriptions();
+          }
+          catch(error){
+              console.error(`Error to get inscriptions:`, error);
+              throw new Error("Failed to fetch inscriptions!");
+          }
+      },
+      inscriptionByUser: async(_, { id }) => {
+        try {
+            return await getInscriptionByUser(id);
+        }
+        catch(error){
+            console.error(`Error to get inscription with id ${id}:`, error);
+            throw new Error("Failed to fetch inscription!");
+        }
+        },
+      inscriptionByCourse: async(_, { id }) => {
+        try {
+            return await getInscriptionByCourse(id);
+        }
+        catch(error){
+            console.error(`Error to get inscription with id ${id}:`, error);
+            throw new Error("Failed to fetch inscription!");
+        }
+      },
+    },
+
+    Mutation: {
+
+    //Mutation User;
+    login: async (_, { mail, password }) => {
+      //Valida o login
+      const {user, token} = await userLogin(mail, password);
+      //Retornar o usuário e o token
+      return {user, token};
+    },
+    createUser: async (_, { fullname, mail, password, level }) => {
+        try{
+            const newUser = await userCreate(fullname, mail, password, level);
+            console.log("Usuario criado: ", newUser);
+            return newUser;
+        }
+        catch(error){
+            console.error(`Error to create user, error: `, error);
+            throw new Error("Failed to create user!");
+        }
+    },
+
+    editUser: async (_, { id, fullname, mail, password, level }) => {
+        try{
+            const updateUser = await userEdit(id, fullname, mail, password, level);
+            console.log("Usuario editado: ", updateUser);
+            return updateUser;
+        }
+        catch(error){
+            console.error(`Error to edit user, error: `, error);
+            throw new Error("Failed to edit user!");
+        }
+    },
+
+    deleteUser: async (_, { id }) => {
+        try{
+            const deleteUser = await userDelete(id);
+            console.log(`Usuario com ID ${id} deletado. ${deleteUser}`);
+            return { success: true, id };
+        }
+        catch(error){
+            console.error(`Error to delete user, error: `, error);
+            throw new Error("Failed to delete user!");
+        }
+    },
+
+    //Mutation Course;
+    createCourse: async (_, { title, description, image, teacher }) => {
+      try{
+          const updateCourse = await courseCreate(title, description, image, teacher);
+          console.log("Curso editado: ", updateCourse);
+          return updateCourse;
+      }
+      catch(error){
+          console.error(`Error to create course, error: `, error);
+          throw new Error("Failed to create course!");
+      }
+    },
+
+    editCourse: async (_, { id, title, description, image, teacher }) => {
+        try{
+            const updateCourse = await courseEdit(id, title, description, image, teacher);
+            console.log("Curso editado: ", updateCourse);
+            return updateCourse;
+        }
+        catch(error){
+            console.error(`Error to edit course, error: `, error);
+            throw new Error("Failed to edit course!");
+        }
+    },
+
+    deleteCourse: async (_, { id }) => {
+        try{
+            const deleteCourse = await courseDelete(id);
+            console.log(`Curso com ID ${id} deletado. ${deleteCourse}`);
+            return { success: true, id };
+        }
+        catch(error){
+            console.error(`Error delete course with id ${id}:`, error);
+            throw new Error("Failed to delete course");
+        }
+    },
+
+    //Mutation Inscription;
+    createInscription: async (_, { studentID, courseID }) => {
+      try{
+          const newInscribled = await inscriptionCreate(studentID, courseID);
+          console.log("Inscrição criada: ", newInscribled);
+          return newInscribled;
+      }
+      catch(error){
+          console.error(`Error to create inscription, error: `, error);
+          throw new Error("Failed to create inscription!");
+      }
+    },
+
+    deleteInscription: async (_, { id }) => {
+        try{
+            const deleteInscription = await inscriptionDelete(id);
+            console.log(`Inscription com ID ${id} deletado. ${deleteInscription}`);
+            return { success: true, id };
+        }
+        catch(error){
+            console.error(`Error to delete inscription, error: `, error);
+            throw new Error("Failed to delete inscription!");
+        }
+    },
+
+  },
+
+  };
+
+//Configuração do Apollo Server
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({ req }) => {
+      // const token = req.headers.authorization || '';
+      // if(token){
+      //   try{
+      //     const user = jwt.verify(token, process.env.JWT_SECRET);
+      //     return { user };
+      //   }
+      //   catch(err){
+      //     console.error('Token inválido', err);
+      //   }
+      // }
+      return {}; // Retorna um contexto vazio para desabilitar a verificação
+    },
+});
+
+//Teste de conexao com Prima/DB;
+prisma.$connect()
+  .then(() => console.log("\x1b[33m" + "Conectado ao banco de dados!"))
+  .catch((error) => console.error("\x1b[31m" + "Erro ao conectar ao banco:", error))
+  .finally(() => prisma.$disconnect());
+
+//Iniciar Servidor
+server.listen(port).then(({url}) => {
+    console.log("\x1b[36m%s\x1b[0m", `Server rodando em ${url}`);
+}).catch((error) => {
+  console.error("\x1b[31m", "Erro ao iniciar o servidor Apollo", error);
+});;

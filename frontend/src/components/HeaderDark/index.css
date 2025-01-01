@@ -1,0 +1,319 @@
+
+.menuHeader{
+  padding-bottom: 20px;
+}
+
+/* Exemplo 3 */
+  
+  img.logo {
+    margin: -2.5px;
+    padding: -2.5px;
+    width: 100px;
+    height: 25px;
+    display: flex;
+  }
+
+  li.ex1 {
+    float: left;
+    border: 1px solid #e7e7e7;
+  }
+  
+  li.ex1 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14.5px 16px;
+    text-decoration: none;
+    border-right: 1px solid #bbb;
+  }
+  
+  li.ex1 a:hover:not(.active1) {
+    /* background-color: #000000; */
+    background-color: #000000;
+
+  }
+  
+  .active1 {
+    background-color: #222222;
+  }
+
+  /* ========================= */
+
+
+  ul.ex3 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: rgb(15, 15, 15);
+    /* background-color: #333; */
+    /* border: #000000; */
+    border: 1px solid #e7e7e7;
+  }
+  
+  li.ex3 {
+    float: left;
+  }
+  
+  li.ex3 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    /* border-right:1px solid #bbb; */
+  }
+  
+  li.ex3 a:hover:not(.active5) {
+    /* background-color: #000000; */
+    background-color: #000000;
+  }
+  
+  .active3 {
+    background-color: #222222;
+  }
+
+/* Exemplo 4 */
+
+ul.ex4 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.ex4 {
+    float: left;
+  }
+  
+  li.ex4 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li.ex4 a:hover:not(.active4) {
+    background-color: #111;
+  }
+  
+  .active4 {
+    background-color: #04AA6D;
+  }
+  
+  /* Exemplo 5 */
+  
+  ul.ex5 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.ex5 {
+    float: left;
+  }
+  
+  li.ex5 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-right:1px solid #bbb;
+  }
+  
+  li.ex5 a:hover:not(.active5) {
+    /* background-color: #111; */
+    background-color: #0077ff;
+    cursor: pointer;
+  }
+  
+  .active5 {
+    background-color: #04AA6D;
+  }
+
+  /* Exemplo 6 */
+  
+  ul.ex6 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.ex6 {
+    float: right;
+    /* border-left: 1px solid #e7e7e7; */
+  }
+  
+  li.ex6 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li.ex6 a:hover:not(.active5) {
+    background-color: #ff0000;
+    /* background-color: #015c3b; */
+    cursor: pointer;
+  }
+  
+  .active6 {
+    background-color: #b90000;
+    /* background-color: #04AA6D; */
+  }
+
+  /* Exemplo 7 */
+  
+  ul.ex7 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.ex7 {
+    float: right;
+    /* border: 1px solid #e7e7e7; */
+  }
+  
+  li.ex7 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li.ex7 a:hover:not(.active7) {
+    background-color: #015c3b;
+    /* background-color: #015c3b; */
+  }
+  
+  .active7 {
+    background-color: #015c3b;
+    /* background-color: #04AA6D; */
+  }
+
+  /* Exemplo 8 */
+  
+  ul.ex8 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.ex8 {
+    float: right;
+    /* border-left: 1px solid #e7e7e7; */
+  }
+  
+  li.ex8 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li.ex8 a:hover:not(.active5) {
+    background-color: #04AA6D;
+    /* background-color: #015c3b; */
+    cursor: pointer;
+  }
+  
+  .active8 {
+    background-color: #015c3b;
+    /* background-color: #04AA6D; */
+  }
+
+  /* Exemplo 9 */
+  
+  ul.ex9 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.ex9 {
+    float: right;
+    /* border-left: 1px solid #e7e7e7; */
+  }
+  
+  li.ex9 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .active9 {
+    background-color: #008ba3;
+    /* background-color: #04AA6D; */
+  }
+
+  /* dropdown */
+
+  /* Dropdown container */
+.dropdown {
+  float: left;
+  cursor: pointer;
+}
+
+/* Dropdown button style */
+.dropbtn {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border: 1px solid #bbb;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: rgb(15, 15, 15);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdownContent a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border: 1px solid #e7e7e7; /* Alinhado com o restante do menu */
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+/* Hover effect for dropdown links */
+.dropdownContent a:hover {
+  background-color: #0077ff;
+}
+
+/* Hover effect for dropdown button */
+.dropdown:hover .dropbtn {
+  background-color: #0077ff;
+}

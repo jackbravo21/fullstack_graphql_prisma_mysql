@@ -1,0 +1,84 @@
+const { prisma } = require('../config/config');
+const { courseSchema, idSchema } = require('../utils/validateForms/courseValidate');
+
+async function courseCreate(title, description, image, teacher, created_at) {
+    try {
+        await courseSchema.validateAsync({ title, description, image, teacher, created_at });
+        const course = await prisma.couses.create({
+            data: { title, description, image, teacher, created_at },
+        });
+        console.log("Curso criado: ", course);
+        return course;
+    } catch (error) {
+        if (error.isJoi) {
+            console.error("Erro de validação:", error.details);
+            throw new Error("Dados inválidos. Verifique os campos e tente novamente.");
+        }
+        console.error("Erro ao criar o curso:", error);
+        throw new Error("Erro ao criar o curso. Verifique os dados e tente novamente.");
+    }
+}
+
+async function courseEdit(id, title, description, image, teacher, created_at) {
+    try {
+        await courseSchema.validateAsync({ id, title, description, image, teacher, created_at });
+        const course = await prisma.couses.update({
+            where: { id },
+            data: { title, description, image, teacher, created_at },
+        });
+        console.log("Curso editado: ", course);
+        return course;
+    } catch (error) {
+        if (error.isJoi) {
+            console.error("Erro de validação:", error.details);
+            throw new Error("Dados inválidos. Verifique os campos e tente novamente.");
+        }
+        console.error("Erro ao editar o curso:", error);
+        throw new Error("Erro ao editar o curso. Verifique os dados e tente novamente.");
+    }
+}
+
+async function courseDelete(id) {
+    try {
+        await idSchema.validateAsync({ id });
+        await prisma.couses.delete({
+            where: { id },
+        });
+        console.log(`Curso ID ${id} deletado com sucesso!`);
+        return true;
+    } catch (error) {
+        if (error.isJoi) {
+            console.error("Erro de validação:", error.details);
+            throw new Error("Dados inválidos. Verifique os campos e tente novamente.");
+        }
+        console.error("Erro ao deletar curso:", error);
+        throw new Error("Erro ao deletar o curso. Verifique os dados e tente novamente.");
+    }
+}
+
+async function getOneCourse(id) {
+    try {
+        await idSchema.validateAsync({ id });
+        return await prisma.couses.findUnique({
+            where: { id },
+        });
+    } catch (error) {
+        if (error.isJoi) {
+            console.error("Erro de validação:", error.details);
+            throw new Error("Dados inválidos. Verifique os campos e tente novamente.");
+        }
+        console.error("Erro ao buscar curso:", error);
+        throw new Error("Erro ao buscar curso.");
+    }
+}
+
+async function fetchCourses() {
+    try {
+        return await prisma.couses.findMany();
+    } catch (error) {
+        console.error("Erro ao buscar os cursos:", error);
+        throw new Error("Erro ao buscar os cursos.");
+    }
+}
+
+module.exports = { courseCreate, courseEdit, courseDelete, getOneCourse, fetchCourses };

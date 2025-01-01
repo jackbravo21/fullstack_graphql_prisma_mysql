@@ -1,0 +1,54 @@
+- Para o react nao abrir automaticamente no navegador, criar um ".env" e colocar dentro "BROWSER=none";
+
+http://localhost:3000/
+
+- installar react globalmente:
+npm install -g create-react-app
+
+- Criar projeto:
+create-react-app nome_do_projeto
+npx create-react-app frontend
+
+npm install
+
+npm run dev
+npm start
+
+Redux:
+npm install redux react-redux @reduxjs/toolkit
+npm install redux-saga
+
+npm install react-router-dom
+https://reactrouter.com/en/main/components/routes
+
+npm install axios
+https://axios-http.com/ptbr/docs/example
+
+- React Icons:
+npm install react-icons
+
+
+=======================================================
+
+
+npx create-react-app nome_do_projeto
+npm install
+
+npm install @reduxjs/toolkit
+npm install react-router-dom
+npm install axios
+npm install crypto
+npm install crypto-js
+
+npm install react-dom
+npm install react-icons
+npm install react-redux
+
+npm install react-scripts
+npm install redux
+npm install redux-saga
+npm install web-vitals
+
+npm install @testing-library/jest-dom
+npm install @testing-library/react
+npm install @testing-library/user-event

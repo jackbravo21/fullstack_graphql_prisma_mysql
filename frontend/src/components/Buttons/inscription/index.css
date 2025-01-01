@@ -1,0 +1,29 @@
+.buttonSubscrible1 {
+    background-color: #28b13a;
+    border: 2px solid rgba(0, 0, 0, 0.226);
+    color: rgb(255, 255, 255);
+    padding: 8px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 8px 12px 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .buttonSubscrible2 {
+    background-color: rgb(255, 255, 255); 
+    color: rgb(0, 0, 0); 
+    border: 2px solid #008d07;
+  }
+  
+  .buttonSubscrible1:hover {
+    background-color: #156b00;
+  }
+
+  .iconSubscribleButton{
+    color: white;
+    font-size: 15px;
+  }
